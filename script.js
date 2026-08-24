@@ -1,6 +1,6 @@
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-let frase = 'e barril kkkkk o aluno'
+let frase = 'e barril kkkkk o alunozzz'
 
 let chave = [2, 4, 1, 3, 5, 7, 6, 9, 8]
 let msgContain = []
@@ -69,39 +69,65 @@ function decripta(){
     }
     console.log(chaveContain)
 
+    const lines = Math.trunc(Fcripto.length / chaveDecripto.length)
+    const sobra = Fcripto.length - (lines * chaveDecripto.length)
 
-    for (let i = 0; i < Math.trunc(Fcripto.length / chaveDecripto.length); i++) {
+    for (let i = 0; i < chaveDecripto.length; i++) {
         for (let j = 0; j < chaveDecripto.length; j++) {
-            CchaveContain[j].push(nfrase[0])
-            nfrase = nfrase.replace(nfrase[0],'')
+            if(chaveDecripto[j] == i + 1){
+                for (let k = 0; k < lines; k++) {
+                    CchaveContain[j].push(nfrase[0])
+                    nfrase = nfrase.replace(nfrase[0],'')
+                }
+                if(i+1 <= sobra && sobra != 0){
+                    CchaveContain[i].push(nfrase[0])
+                    nfrase = nfrase.replace(nfrase[0],'')
+                }
+            }
+        }   
+    }
+    
+    for (let i = 0; i < lines; i++) {
+        for (let j = 0; j < chaveDecripto.length; j++) {
+            claro += CchaveContain[j][i]
+        }
+    }
+    if(sobra){
+        for (let i = 0; i < sobra; i++) {
+            claro += CchaveContain[i][lines];
+        }
+    }
+/*
+    for (let i = 0; i < chaveDecripto.length; i++) {
+        for (let j = 0; j < CchaveContain[i].length; j++) {
+            claro += CchaveContain[i][j]
+        }
+        
+    }*/
+/*
+    for (let i = 0; i < lines; i++) {
+        for (let j = 0; j < chaveDecripto.length; j++) {
+            CmsgContain.push(CchaveContain[j])
         }
     }
 
     if(nfrase){
         for (let i = 0; i < nfrase.length; i++) {
-            CchaveContain[i].push(nfrase[0])
+            /*CchaveContain[i].push(nfrase[0])
             nfrase = nfrase.replace(nfrase[0],'')      
         }
     }
 
-    for (let i = 0; i < chaveDecripto.length; i++) {
-        for (let j = 0; j < chaveDecripto.length; j++) {
-            if(chaveDecripto[j] == i + 1){
-                CmsgContain.push(CchaveContain[j])
-            }
-        }   
-    }
 
     for (let i = 0; i < chaveDecripto.length; i++) {
         for (let j = 0; j < CmsgContain[i].length; j++) {
             claro += CmsgContain[i][j]
         }
-    }
+    }*/
 }
 
 decripta()
 
 
 console.log(CchaveContain)
-console.log(CmsgContain)
 console.log(claro)
