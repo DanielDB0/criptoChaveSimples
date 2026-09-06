@@ -1,19 +1,19 @@
 const alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-let frase = 'e barril kkkkk o alunozzz'
+let frase = 'Mensagem criptografada com sucesso exemplo'
 
-let chave = [2, 4, 1, 3, 5, 7, 6, 9, 8]
+let chave = [2, 6, 8, 4, 5, 3, 1, 7, 6]
 let msgContain = []
 let chaveContain = []
 let mensagem = ''
 
 function cripto(){
+    frase = frase.toUpperCase().replaceAll(' ', '')
     let nfrase = frase
-    nfrase = nfrase.toUpperCase().replaceAll(' ', '')
     for (let i = 0; i < chave.length; i++) {
         chaveContain.push([])
     }
-    console.log(chaveContain)
+//    console.log(chaveContain)
 
     for (let i = 0; i < Math.trunc(frase.length / chave.length); i++) {
         for (let j = 0; j < chave.length; j++) {
@@ -22,12 +22,13 @@ function cripto(){
         }
     }
 
-    if(nfrase){
-        for (let i = 0; i < nfrase.length; i++) {
-            chaveContain[i].push(nfrase[0])
-            nfrase = nfrase.replace(nfrase[0],'')      
-        }
+    let contS = 0
+    while(nfrase){
+        chaveContain[contS].push(nfrase[0])
+        nfrase = nfrase.replace(nfrase[0],'')
+        contS++      
     }
+    contS = 0
 
     for (let i = 0; i < chave.length; i++) {
         for (let j = 0; j < chave.length; j++) {
@@ -44,11 +45,11 @@ function cripto(){
     }
 
 }
-/*
+
 cripto()
 console.log(chaveContain)
 console.log(msgContain)
-console.log(mensagem.replaceAll('undefined', ''))*/
+console.log(mensagem)
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -67,7 +68,7 @@ function decripta(){
     for (let i = 0; i < chaveDecripto.length; i++) {
         CchaveContain.push([])
     }
-    console.log(chaveContain)
+    //console.log(chaveContain)
 
     const lines = Math.trunc(Fcripto.length / chaveDecripto.length)
     const sobra = Fcripto.length - (lines * chaveDecripto.length)
@@ -128,6 +129,6 @@ function decripta(){
 
 decripta()
 
-
+/*
 console.log(CchaveContain)
-console.log(claro)
+console.log(claro)*/
